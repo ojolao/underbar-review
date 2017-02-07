@@ -175,16 +175,15 @@
     // }
     
     // return result; 
-    if (accumulator === undefined) {
-      accumulator = collection[0];
-      for (var i = 1; i < collection.length; i++) {
+    var initialize = false;
+    for (var i = 0; i < collection.length; i++) {
+      if (initialize === false && accumulator === undefined) {
+        accumulator = collection[i];
+        initialize = true;
+      } else {
         accumulator = iterator(accumulator, collection[i]);
       }
-    } else {
-      for (var i = 0; i < collection.length; i++) {
-        accumulator = iterator(accumulator, collection[i]);
-      }
-    }
+    } 
     return accumulator;
   };
 
