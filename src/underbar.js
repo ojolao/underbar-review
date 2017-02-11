@@ -360,19 +360,16 @@
   //   return result; 
   // };
   _.shuffle = function(array) {
-    var resultIndex = new Set();
-    var result = [];
+    var result = array.slice();
     for (var i = 0; i < array.length; i++) {
-      resultIndex.add(Math.floor(Math.random() * array.length)); 
+      
+      var lastPos = Math.floor(Math.random() * array.length);
+      var temp = result[i];
+      result[i] = result[lastPos];
+      result[lastPos] = temp;
     }
-    resultIndex = Array.from(resultIndex);
-
-    for (var i = 0; i < resultIndex.length; i++) {
-      result.push(array[resultIndex[i]]);
-    }  
-    return result; 
+    return result;
   };
-
 
   /**
    * ADVANCED
